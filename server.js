@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -10,7 +12,6 @@ const Route = require("./routers/AppRouter");
 
 app.use("/api", Route);
 
-const PORT = 5000;
 app.listen(PORT, () => {
-    console.log("App running is port :", PORT);
+    console.log("App running is port :", process.env.HOST);
 });
