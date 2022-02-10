@@ -13,5 +13,5 @@ const Route = require("./routers/AppRouter");
 app.use("/api", Route);
 
 app.listen(process.env.PORT, () => {
-    console.log("App running is port :", process.env.HOST);
+    console.log("App running is port :", process.env.PORT);
 });

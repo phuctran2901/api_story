@@ -313,10 +313,6 @@ class AppControllers {
         );
         try {
             const $ = cheerio.load(data);
-            // let backgroundImage = $(".top-bg-box")
-            //     .css("background-image")
-            //     .split("(")[1]
-            //     .slice(0, backgroundImage.length - 5);
             let idStory = $("meta[name=book_detail]").attr("content");
             let sourceImage = $("#bookImg img").attr("src");
             let info = $(".book-info");
@@ -379,7 +375,9 @@ class AppControllers {
                 },
                 listWillLike,
             });
-        } catch (err) {}
+        } catch (err) {
+            console.log(err.message);
+        }
     }
     static async getListChapter(req, res) {
         const { idStory } = req.params;
@@ -447,7 +445,9 @@ class AppControllers {
                     ? prevChapter.find("a").attr("href").split("/")[5]
                     : null,
             });
-        } catch (err) {}
+        } catch (err) {
+            console.log(err.message);
+        }
     }
     static async getAudioChapter(req, res) {
         const { text, idStory, chapter } = req.body;
@@ -535,6 +535,7 @@ class AppControllers {
                     const title = $(`.desc-wrap.item-${index + 1} h3 a`).text();
                     const slug = $(`.desc-wrap.item-${index + 1} .read-btn`)
                         .attr("onclick")
+                        .split("'")[1]
                         .split("/")[4];
                     return {
                         sourceImage,
